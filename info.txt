@@ -1,0 +1,11 @@
+
+🔍 -webkit-background-clip: text;
+Tells the browser: “Apply the background (your gradient) only inside the text's shape, not behind it.”
+
+Without this, the gradient sits behind the text, not inside it.
+
+🔍 -webkit-text-fill-color: transparent;
+Makes the actual color of the text invisible so that the background (gradient) can show through the text.
+
+If you don’t do this, your text color (like white or black) will block the gradient.
+

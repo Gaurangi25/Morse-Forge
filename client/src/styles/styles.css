@@ -1,5 +1,69 @@
-* {
-  background-color: #8a008a;
-  background-image: url(http://www.transparenttextures.com/patterns/asfalt-light.png);
-  
+:root {
+  /* fonts */
+  --font-cursive-1: "Architects Daughter", cursive;
+  --font-cursive-2: "Pacifico", cursive;
+  --font-cursive-3: "Roboto", sans-serif;
+  --font-cursive-4: "Bitcount Grid Double", system-ui;
+
+  /* colors */
+  /* Backgrounds */
+  --bg-main: hsla(240, 17.39%, 9.02%, 1);
+  --bg-section: #1a1a2e;
+  --bg-card: #1e1b18;
+
+  /* Text */
+  --text-main: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --text-heading: #ffffff;
+
+  /* Accents (Buttons, highlights) */
+  --accent-pink: #ec4186;
+  --accent-pinkish: #d96fa5;
+  --accent-orange: #e4572e;
+  --accent-soft: #a45d83;
+  --accent-teal: #206f66;
+  --accent-soft-teal: #388980;
+  --accent-rose-carol: #ff7cae;
+
+  /* Extras (optional/fun) */
+  --highlight: #f7cde9;
+  --peach: #fadfcd;
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: var(--font-cursive-4);
+  margin: 0;
+  padding: 0;
+}
+
+/* heading -> morse forge*/
+.heading {
+  background: linear-gradient(
+    135deg,
+    var(--accent-pink),
+    var(--accent-pinkish),
+    var(--accent-soft-teal),
+    var(--accent-teal)
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: 60px;
+  font-weight:400;
+  margin-top: 0px;
+  padding: 10px;
+}
+
+/* logo icon */
+.icon {
+  width: 40px;
+  height: 40px;
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
