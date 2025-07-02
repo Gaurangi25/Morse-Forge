@@ -125,7 +125,7 @@ body {
   gap: 30px;
 }
 
-.EncoderText {
+.textArea {
   width: 600px;
   height: 150px;
 
@@ -145,14 +145,14 @@ body {
   transition: 0.3s ease all;
 }
 
-.EncoderText:hover {
+.textArea:hover {
   border-color: var(--peach);
-  box-shadow: 0 0 10px var(--text-muted);
+  box-shadow: 0 0 20px var(--accent-teal);
 
   transition: box-shadow 0.3s ease, border-color 0.5s ease;
 }
 
-.EncoderText::placeholder {
+.textArea::placeholder {
   color: var(--text-muted);
   font-family: var(--font-style);
   letter-spacing: 0.8px;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { morseList } from "../data/morseCode";
+import TextArea from "./TextArea";
+import HeadingTextbox from "./HeadingTextbox";
 
 function MorseEncoder() {
   //console.log("Component rendered");
@@ -13,7 +15,7 @@ function MorseEncoder() {
   function morseOutput(inputText) {
     //Convert the character to upper case and split the input text into separate characters
 
-    const chars = inputText.toUpperCase().split("");
+    const chars = inputText.toUpperCase().trim().split("");
 
     //Map into each character
     const morseArray = chars.map((x) => {
@@ -30,27 +32,23 @@ function MorseEncoder() {
 
   return (
     <div className="Encoder">
-      <div className="EncoderHeading">
-        <h3>What Would Morse Say? </h3>
-        <h3 className="typewriter">Let's Find Out 🕵️‍♂️</h3>
-      </div>
+      <HeadingTextbox
+        title="What Would Morse Say?"
+        subtitle="Let's Find Out 🕵️‍♂️"
+      />
 
       <form className="EncoderForm">
-        <textarea
-          className="EncoderText"
+        <TextArea
           placeholder="⫸ Type something mysterious..."
           onChange={handleChange}
           value={text}
-          rows={5}
-        ></textarea>
+        />
 
-        <textarea
-          readOnly
-          className="EncoderText"
+        <TextArea
+          readOnly={true}
           value={morseOutput(text)}
           placeholder="⫸ Decode the static…"
-          rows={5}
-        ></textarea>
+        />
       </form>
     </div>
   );
