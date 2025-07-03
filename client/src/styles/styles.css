@@ -81,16 +81,23 @@ body {
     hue-rotate(134deg) brightness(92%) contrast(88%);
 }
 
-/* Encoder */
-.Encoder {
+/* Outer div styling */
+.Outer-divs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* Morse Logic */
+.MorseLogic {
   box-sizing: border-box;
   background-color: var(--bg-section);
   color: var(--text-main);
 
   border-radius: 20px;
-  height: 600px;
-  width: 700px;
-  margin: 20px;
+  height: 550px;
+  width: 600px;
+  margin: 40px;
 
   display: flex;
   flex-direction: column;
@@ -99,14 +106,14 @@ body {
   align-items: center;
 }
 
-.EncoderHeading {
+.MorseHeading {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.EncoderHeading h3 {
+.MorseHeading h3 {
   font-family: var(--font-cursive-1);
   display: flex;
 
@@ -115,9 +122,8 @@ body {
   font-size: 30px;
 }
 
-/* Encoder Form */
-
-.EncoderForm {
+/* Morse Form */
+.MorseForm {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,8 +132,8 @@ body {
 }
 
 .textArea {
-  width: 600px;
-  height: 150px;
+  width: 450px;
+  height: 130px;
 
   background: var(--bg-main);
   border-radius: 25px;
@@ -165,7 +171,7 @@ body {
   font-family: monospace;
   white-space: nowrap;
   width: 0;
-  animation: typing 2s steps(20, end) forwards;
+  animation: typing 4s steps(25, end) forwards;
 }
 
 @keyframes typing {
@@ -173,6 +179,6 @@ body {
     width: 0;
   }
   to {
-    width: 14ch;
+    width: 17ch;
   }
 }

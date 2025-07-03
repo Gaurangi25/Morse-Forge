@@ -6,7 +6,9 @@ import HeadingTextbox from "./HeadingTextbox";
 function MorseEncoder() {
   //console.log("Component rendered");
   const [text, setText] = useState("");
+  const [decodedText, setDecodedText] = useState("");
 
+  // ENCODER CONCEPT
   function handleChange(event) {
     setText(event.target.value);
     console.log(event.target.value);
@@ -14,7 +16,6 @@ function MorseEncoder() {
 
   function morseOutput(inputText) {
     //Convert the character to upper case and split the input text into separate characters
-
     const chars = inputText.toUpperCase().trim().split("");
 
     //Map into each character
@@ -30,26 +31,97 @@ function MorseEncoder() {
     return morseArray.join(" ");
   }
 
+  //DECODER CONCEPT
+  function decodeMorse(inputMorse) {
+    console.log(inputMorse);
+
+    //Splitting in array for characters
+    const charArray = inputMorse.trim().split("");
+
+    const isValid = charArray.every(
+      (char) => char === "." || char === "-" || char === " "
+    );
+
+    if (!isValid) {
+      console.log("Enter morse code only..either . or -");
+      return "⚠ Invalid Morse Code";
+    }
+
+    /*
+    It is a conventional rule that between 2 words 3 spaces are given
+    */
+
+    //Splitting in array for words
+    const words = inputMorse.trim().split("   ");
+    const decodedWords = words.map((word) => {
+      const letters = word.split(" ");
+      //console.log(letters);
+
+      const decodedLetters = letters.map((x) => {
+        const found = morseList.find((item) => item.code === x);
+
+        return found ? found.char : "";
+      });
+
+      //DECODED LETTERS COMBINING
+      console.log(decodedLetters);
+      return decodedLetters.join("");
+    });
+
+    //DECODED WORDS COMBINING
+    console.log(decodedWords);
+    const output = decodedWords.join("  ");
+    return output.toUpperCase();
+  }
+
+  function handleDecodeChange(event) {
+    setDecodedText(event.target.value);
+    //console.log("Decoded text : ", event.target.value);
+  }
+
   return (
-    <div className="Encoder">
-      <HeadingTextbox
-        title="What Would Morse Say?"
-        subtitle="Let's Find Out 🕵️‍♂️"
-      />
-
-      <form className="EncoderForm">
-        <TextArea
-          placeholder="⫸ Type something mysterious..."
-          onChange={handleChange}
-          value={text}
+    <div className="Outer-divs">
+      <div className="MorseLogic">
+        <HeadingTextbox
+          title="What Would Morse Say?"
+          subtitle="Type. Blink. Encrypt🕵️‍♂️"
         />
 
-        <TextArea
-          readOnly={true}
-          value={morseOutput(text)}
-          placeholder="⫸ Decode the static…"
+        <form className="MorseForm">
+          <TextArea
+            placeholder="⫸Type something mysterious..."
+            onChange={handleChange}
+            value={text}
+          />
+
+          <TextArea
+            readOnly={true}
+            value={morseOutput(text)}
+            placeholder="⫸Decode the static…"
+          />
+        </form>
+      </div>
+
+      <div className="MorseLogic">
+        <HeadingTextbox
+          title="What Does Morse Mean?"
+          subtitle="Dots turn to words🧐"
         />
-      </form>
+
+        <form className="MorseForm">
+          <TextArea
+            placeholder="⫸ Enter Morse code: .- -... -.-."
+            onChange={handleDecodeChange}
+            value={decodedText}
+          />
+
+          <TextArea
+            readOnly={true}
+            value={decodeMorse(decodedText)}
+            placeholder="⫸ Interpreted message..."
+          />
+        </form>
+      </div>
     </div>
   );
 }
