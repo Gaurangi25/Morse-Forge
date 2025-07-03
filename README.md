@@ -18,4 +18,7 @@ This project is currently under active development. More features will be added 
 
 ---
 
+## 🚀 Live Demo
+[Click here to view Morse Forge](https://morse-forge.vercel.app)
+
 
