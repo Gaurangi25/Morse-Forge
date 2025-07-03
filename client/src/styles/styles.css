@@ -182,3 +182,35 @@ body {
     width: 17ch;
   }
 }
+
+@media (max-width: 1200px) {
+  .Outer-divs {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .MorseLogic {
+    width: 90%;
+    height: 550px;
+    margin: 20px 0;
+    transform: scale(0.9);
+  }
+
+  .textArea {
+    width: 500px;
+    height: auto;
+    min-height: 130px;
+  }
+
+  .heading {
+    font-size: 42px;
+    text-align: center;
+  }
+
+  .MorseHeading h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
