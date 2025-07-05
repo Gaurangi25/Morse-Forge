@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { morseList } from "../data/morseCode";
 import TextArea from "./TextArea";
 import HeadingTextbox from "./HeadingTextbox";
+import CopyButton from "./CopyButton";
+import MorseSound from "./MorseSound";
 
 function MorseEncoder() {
   //console.log("Component rendered");
   const [text, setText] = useState("");
   const [decodedText, setDecodedText] = useState("");
+  const [highlightIndex, setHighlightIndex] = useState(-1); //for animation
 
   // ENCODER CONCEPT
   function handleChange(event) {
     setText(event.target.value);
-    console.log(event.target.value);
+    //console.log(event.target.value);
   }
 
   function morseOutput(inputText) {
@@ -33,7 +36,7 @@ function MorseEncoder() {
 
   //DECODER CONCEPT
   function decodeMorse(inputMorse) {
-    console.log(inputMorse);
+    //console.log(inputMorse);
 
     //Splitting in array for characters
     const charArray = inputMorse.trim().split("");
@@ -43,7 +46,7 @@ function MorseEncoder() {
     );
 
     if (!isValid) {
-      console.log("Enter morse code only..either . or -");
+      //console.log("Enter morse code only..either . or -");
       return "⚠ Invalid Morse Code";
     }
 
@@ -64,12 +67,12 @@ function MorseEncoder() {
       });
 
       //DECODED LETTERS COMBINING
-      console.log(decodedLetters);
+      //console.log(decodedLetters);
       return decodedLetters.join("");
     });
 
     //DECODED WORDS COMBINING
-    console.log(decodedWords);
+    //console.log(decodedWords);
     const output = decodedWords.join("  ");
     return output.toUpperCase();
   }
@@ -78,6 +81,8 @@ function MorseEncoder() {
     setDecodedText(event.target.value);
     //console.log("Decoded text : ", event.target.value);
   }
+
+  const morseEncoded = morseOutput(text);
 
   return (
     <div className="Outer-divs">
@@ -94,11 +99,30 @@ function MorseEncoder() {
             value={text}
           />
 
-          <TextArea
-            readOnly={true}
-            value={morseOutput(text)}
-            placeholder="⫸Decode the static…"
-          />
+          <div className="textarea-wrapper">
+            <div className="highlight-overlay">
+              {morseEncoded.split("").map((char, index) => (
+                <span
+                  key={index}
+                  className={index === highlightIndex ? "highlight-char" : ""}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
+
+            <TextArea
+              readOnly={true}
+              value={morseOutput(text)}
+              placeholder="⫸Decode the static…"
+              className="textArea textarea-styled"
+            />
+          </div>
+
+          <div className="button-group">
+            <MorseSound text={text} onHighlight={setHighlightIndex} />
+            <CopyButton text={morseOutput(text)} />
+          </div>
         </form>
       </div>
 
@@ -120,6 +144,8 @@ function MorseEncoder() {
             value={decodeMorse(decodedText)}
             placeholder="⫸ Interpreted message..."
           />
+
+          <CopyButton text={decodeMorse(decodedText)} />
         </form>
       </div>
     </div>
