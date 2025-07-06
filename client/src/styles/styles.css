@@ -82,6 +82,13 @@ body {
     hue-rotate(134deg) brightness(92%) contrast(88%);
 }
 
+/* Wrapper div */
+.wrapper-divs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Outer div styling */
 .Outer-divs {
   display: flex;
@@ -263,6 +270,133 @@ body {
   }
 }
 
+/* Morse Reference button */
+.reference-link {
+  background-color: var(--accent-soft-teal);
+  color: var(--text-heading);
+  font-family: var(--font-style);
+
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  /*transform: translateY(-20px);*/
+
+  border: 2px solid var(--text-muted);
+  transition: 0.3s ease;
+}
+
+.reference-link:hover {
+  background-color: var(--accent-teal);
+  box-shadow: 0 0 10px var(--peach);
+}
+
+/* Morse Reference Page */
+.reference-page {
+  padding: 40px 20px;
+  min-height: 100vh;
+  text-align: center;
+
+  color: var(--text-main);
+  font-family: var(--font-style);
+  background-color: var(--bg-main);
+}
+
+.reference-page h2 {
+  font-size: 36px;
+  margin-top: 0px;
+
+  background: linear-gradient(
+    135deg,
+    var(--accent-pink),
+    var(--accent-pinkish),
+    var(--accent-soft-teal),
+    var(--accent-teal)
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-morse-code);
+  letter-spacing: 2px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 18px;
+
+  text-decoration: none;
+  color: var(--accent-rose-carol);
+  transition: all 0.3s ease-in-out;
+
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--accent-soft);
+}
+
+.back-link:hover {
+  background-color: var(--accent-pinkish);
+  color: var(--bg-card);
+  box-shadow: 0 0 10px var(--accent-soft);
+}
+
+table {
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 2px solid var(--accent-teal);
+  box-shadow: 0 0 15px rgba(56, 137, 128, 0.4);
+  background-color: var(--bg-main);
+  border-radius: 12px;
+
+  overflow: hidden;
+  animation: fadeInTable 1s ease-in-out;
+}
+
+@keyframes fadeInTable {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+thead {
+  background-color: var(--accent-teal);
+}
+
+thead th {
+  padding: 14px;
+  color: var(--peach);
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+tbody td {
+  padding: 12px 20px;
+  font-size: 18px;
+  border-top: 1px solid var(--text-main);
+  color: var(--peach);
+}
+
+tbody tr {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+tbody tr:hover {
+  transform: scale(1.03);
+  background-color: var(--accent-soft-teal);
+  color: var(--bg-main);
+  box-shadow: 0 0 12px var(--accent-green);
+}
+
+/* Media Queries*/
 @media (max-width: 1200px) {
   .Outer-divs {
     flex-direction: column;
@@ -271,7 +405,7 @@ body {
   }
 
   .MorseLogic {
-    width: 90%;
+    width: 635px;
     height: 550px;
     margin: 20px 0;
     transform: scale(0.9);

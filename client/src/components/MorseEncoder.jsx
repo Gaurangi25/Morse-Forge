@@ -4,6 +4,7 @@ import TextArea from "./TextArea";
 import HeadingTextbox from "./HeadingTextbox";
 import CopyButton from "./CopyButton";
 import MorseSound from "./MorseSound";
+import { Link } from "react-router-dom";
 
 function MorseEncoder() {
   //console.log("Component rendered");
@@ -85,69 +86,75 @@ function MorseEncoder() {
   const morseEncoded = morseOutput(text);
 
   return (
-    <div className="Outer-divs">
-      <div className="MorseLogic">
-        <HeadingTextbox
-          title="What Would Morse Say?"
-          subtitle="Type. Blink. Encrypt🕵️‍♂️"
-        />
-
-        <form className="MorseForm">
-          <TextArea
-            placeholder="⫸Type something mysterious..."
-            onChange={handleChange}
-            value={text}
+    <div className="wrapper-divs">
+      <div className="Outer-divs">
+        <div className="MorseLogic">
+          <HeadingTextbox
+            title="What Would Morse Say?"
+            subtitle="Type. Blink. Encrypt🕵️‍♂️"
           />
 
-          <div className="textarea-wrapper">
-            <div className="highlight-overlay">
-              {morseEncoded.split("").map((char, index) => (
-                <span
-                  key={index}
-                  className={index === highlightIndex ? "highlight-char" : ""}
-                >
-                  {char}
-                </span>
-              ))}
+          <form className="MorseForm">
+            <TextArea
+              placeholder="⫸Type something mysterious..."
+              onChange={handleChange}
+              value={text}
+            />
+
+            <div className="textarea-wrapper">
+              <div className="highlight-overlay">
+                {morseEncoded.split("").map((char, index) => (
+                  <span
+                    key={index}
+                    className={index === highlightIndex ? "highlight-char" : ""}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+
+              <TextArea
+                readOnly={true}
+                value={morseOutput(text)}
+                placeholder="⫸Decode the static…"
+                className="textArea textarea-styled"
+              />
             </div>
+
+            <div className="button-group">
+              <MorseSound text={text} onHighlight={setHighlightIndex} />
+              <CopyButton text={morseOutput(text)} />
+            </div>
+          </form>
+        </div>
+
+        <div className="MorseLogic">
+          <HeadingTextbox
+            title="What Does Morse Mean?"
+            subtitle="Dots turn to words🧐"
+          />
+
+          <form className="MorseForm">
+            <TextArea
+              placeholder="⫸ Enter Morse code: .- -... -.-."
+              onChange={handleDecodeChange}
+              value={decodedText}
+            />
 
             <TextArea
               readOnly={true}
-              value={morseOutput(text)}
-              placeholder="⫸Decode the static…"
-              className="textArea textarea-styled"
+              value={decodeMorse(decodedText)}
+              placeholder="⫸ Interpreted message..."
             />
-          </div>
 
-          <div className="button-group">
-            <MorseSound text={text} onHighlight={setHighlightIndex} />
-            <CopyButton text={morseOutput(text)} />
-          </div>
-        </form>
+            <CopyButton text={decodeMorse(decodedText)} />
+          </form>
+        </div>
       </div>
 
-      <div className="MorseLogic">
-        <HeadingTextbox
-          title="What Does Morse Mean?"
-          subtitle="Dots turn to words🧐"
-        />
-
-        <form className="MorseForm">
-          <TextArea
-            placeholder="⫸ Enter Morse code: .- -... -.-."
-            onChange={handleDecodeChange}
-            value={decodedText}
-          />
-
-          <TextArea
-            readOnly={true}
-            value={decodeMorse(decodedText)}
-            placeholder="⫸ Interpreted message..."
-          />
-
-          <CopyButton text={decodeMorse(decodedText)} />
-        </form>
-      </div>
+      <Link to="/reference" className="reference-link">
+        Morse Reference
+      </Link>
     </div>
   );
 }
