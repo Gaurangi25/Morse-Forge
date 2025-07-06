@@ -5,6 +5,7 @@ import HeadingTextbox from "./HeadingTextbox";
 import CopyButton from "./CopyButton";
 import MorseSound from "./MorseSound";
 import { Link } from "react-router-dom";
+import morseFacts from "../data/facts";
 
 function MorseEncoder() {
   //console.log("Component rendered");
@@ -155,6 +156,12 @@ function MorseEncoder() {
       <Link to="/reference" className="reference-link">
         Morse Reference
       </Link>
+
+      <div className="facts">
+        <strong>💡 Morse Fun Fact</strong>
+        <br />
+        {morseFacts[Math.floor(Math.random() * morseFacts.length)]}
+      </div>
     </div>
   );
 }
