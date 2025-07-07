@@ -160,7 +160,7 @@ function MorseEncoder() {
       <div className="facts">
         <strong>💡 Morse Fun Fact</strong>
         <br />
-        {morseFacts[Math.floor(Math.random() * morseFacts.length)]}
+        {morseFacts[new Date().getDate() % morseFacts.length]}
       </div>
     </div>
   );
