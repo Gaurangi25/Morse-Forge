@@ -532,6 +532,9 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
+  .body{
+    background-color: #a0a0a0;
+  }
   .textarea-wrapper {
     width: 90vw;
     max-width: 500px;
@@ -545,7 +548,7 @@ tbody tr:hover {
     position: absolute;
     top: 2px;
     left: 6px;
-    
+
     font-size: 20px;
     padding: 12px 12px;
     line-height: 1.6;
