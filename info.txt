@@ -9,3 +9,172 @@ Makes the actual color of the text invisible so that the background (gradient) c
 
 If you don’t do this, your text color (like white or black) will block the gradient.
 
+____________________________________________________
+
+TEXT TO MORSE CODE LOGIC
+(Encoding)
+
+→ Convert input text to uppercase
+→ Morse code uses capital letters by convention.
+
+Split the text into individual characters
+→ Example: "HELLO" → ["H", "E", "L", "L", "O"]
+
+Loop through each character
+→ For each, find the corresponding Morse code in the morseList.
+
+Handle missing characters
+→ If a character doesn’t exist in morseList, return an empty string or placeholder.
+
+Join the Morse code values with spaces
+→ Final output becomes a single Morse string like:
+".... . .-.. .-.. ---"
+
+____________________________________________________
+
+DECODER LOGIC
+.test() is a JavaScript method used with regular expressions. It checks whether a string matches a pattern — and returns a boolean (true or false).
+
+regex.test(string)
+Returns true if string matches the pattern defined by regex
+
+Returns false if it doesn't
+
+const isValid = chars.every(
+  (char) => char === "." || char === "-" || char === " "
+);
+This says:
+
+“Is every character either a dot, dash, or space?”
+
+Perfect use case.
+
+____________________________________________________
+
+COPY PASTE BUTTON LOGIC
+
+The JavaScript function used to copy text to the clipboard is:
+navigator.clipboard.writeText(text)
+
+🔍 Details
+
+Purpose: Copies a string (text) to the user's clipboard.
+Returns: A Promise that resolves if the copy is successful or rejects on failure.
+
+
+Example
+navigator.clipboard.writeText("Hello World!")
+  .then(() => {
+    console.log("Copied!");
+  })
+  .catch((err) => {
+    console.error("Failed to copy:", err);
+  });
+
+Only works in secure contexts: https:// or http://localhost
+
+____________________________________________________
+
+PLAY SOUND
+
+🔊 What is the Web Audio API?
+The Web Audio API is a powerful built-in browser feature (no library needed) for working with audio. It lets you:
+
+Create sounds (like tones or beeps)
+
+Control pitch, volume, timing
+
+Play audio programmatically without any .mp3 or file
+
+Perfect for generating Morse code beeps in real time.
+
+✅ What We Need It For
+You want to:
+
+Play a short beep for . (dot)
+
+Play a longer beep for - (dash)
+
+Add small pauses between each
+
+All this must happen dynamically (not pre-recorded)
+
+This is exactly what Web Audio API is for.
+
+🧠 Basic Concepts (you’ll use)
+
+1. AudioContext
+The core object that gives you access to audio tools.
+You must create it first:
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+Think of it like a "music studio" where you build and control sound.
+
+2. OscillatorNode
+This generates a tone — like a sine wave beep.
+
+const oscillator = audioCtx.createOscillator();
+oscillator.type = "sine"; // or "square", "triangle", etc.
+oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); // 600 Hz for Morse beep
+
+3. GainNode
+Controls the volume. You'll use it to turn sound on/off quickly:
+
+const gainNode = audioCtx.createGain();
+gainNode.gain.setValueAtTime(1, audioCtx.currentTime); // Full volume
+
+
+4. Chain It All Together
+To actually hear the sound:
+
+oscillator.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+oscillator.start();
+oscillator.stop(audioCtx.currentTime + duration / 1000); // e.g. 0.2s for dot
+The stop() method lets you control how long the beep lasts.
+
+⌛ What About Timing?
+You’ll use:
+
+await new Promise((res) => setTimeout(res, duration));
+This pauses between beeps so they play sequentially, not all at once.
+
+🧩 Final Integration (Concept)
+Your logic becomes:
+Loop over each char in Morse string
+For . → play 200ms beep
+For - → play 600ms beep
+For space → wait 400ms (no beep)
+
+audioCtx.suspend(); // to pause
+audioCtx.resume();  // to resume
+
+____________________________________________________
+
+TOGGLE BUTTON
+ pointer-events: none;
+✅ Meaning:
+Disables mouse interactions with the element.
+
+🧠 So What Happens?
+You can’t click, hover, or interact with that element.
+
+The pointer will act like that element isn’t even there.
+
+🎯 Use case here:
+You're showing the 🌙 and 🌞 emojis only as visual cues inside the toggle — the user should click the pill, not the emojis.
+So this ensures:
+👉 "Clicks pass through emojis and hit the pill instead."
+
+🔹 user-select: none;
+✅ Meaning:
+Prevents the user from selecting text (highlighting it with the mouse).
+
+🧠 So What Happens?
+You can’t drag to highlight the emoji text.
+
+Looks cleaner, especially on things meant to be clicked, not read.
+
+🧾 Example:
+You're avoiding weird cases like:
+
+"Oops, I dragged and highlighted 🌞 by accident!"
