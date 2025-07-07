@@ -500,28 +500,34 @@ tbody tr:hover {
 }
 
 /* Media Queries*/
+/* ────── For Tablets & Small Laptops (≤1200px) ────── */
 @media (max-width: 1200px) {
   .Outer-divs {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
   }
 
   .MorseLogic {
-    width: 635px;
-    height: 550px;
+    width: 90vw;
+    height: auto;
     margin: 20px 0;
-    transform: scale(0.9);
+    padding: 20px 10px;
   }
 
   .textArea {
-    width: 500px;
-    height: auto;
+    width: 85vw;
     min-height: 130px;
+    font-size: 18px;
+  }
+
+  .highlight-overlay {
+    font-size: 18px;
+    padding: 12px;
   }
 
   .heading {
-    font-size: 54px;
+    font-size: 50px;
     text-align: center;
   }
 
@@ -529,46 +535,110 @@ tbody tr:hover {
     font-size: 24px;
     text-align: center;
   }
+
+  .button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .facts {
+    font-size: 20px;
+    padding: 25px 5vw;
+  }
+
+  table {
+    width: 95vw;
+  }
 }
 
+/* ────── For Phones Only (≤768px) ────── */
 @media (max-width: 768px) {
-  .body{
-    background-color: #a0a0a0;
-  }
-  .textarea-wrapper {
-    width: 90vw;
-    max-width: 500px;
-    margin: 0 auto;
+  .heading {
+    font-size: 38px;
+    padding: 8px;
+    flex-wrap: wrap;
+    text-align: center;
   }
 
-  .textArea,
-  .highlight-overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 2px;
-    left: 6px;
-
+  .MorseHeading h3 {
     font-size: 20px;
-    padding: 12px 12px;
-    line-height: 1.6;
-    box-sizing: border-box;
+    text-align: center;
   }
 
   .MorseLogic {
     width: 95vw;
+    padding: 16px 8px;
     margin: 20px 0;
     height: auto;
-    transform: none;
   }
 
-  .MorseHeading h3 {
-    font-size: 22px;
-    text-align: center;
+  .textArea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    min-height: 120px;
   }
 
-  .heading {
-    font-size: 44px;
-    padding: 5px;
+  .highlight-overlay {
+    font-size: 16px;
+    padding: 10px 12px;
+    top: 2px;
+    left: 6px;
+  }
+
+  .toggle-button {
+    width: 50px;
+    height: 25px;
+    right: 20px;
+    margin-right: 15px;
+  }
+
+  .toggle-button .knob {
+    width: 20px;
+    height: 20px;
+    top: 2.5px;
+    left: 2.5px;
+  }
+
+  .toggle-button.light-active .knob {
+    transform: translateX(26px);
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .copy-btn {
+    font-size: 18px;
+    padding: 6px 20px;
+  }
+
+  .facts {
+    font-size: 18px;
+    padding: 20px 5vw;
+    margin-top: 30px;
+  }
+
+  .reference-link {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+
+  .reference-page h2 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  table thead th,
+  table tbody td {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .back-link {
+    font-size: 16px;
+    padding: 5px 14px;
   }
 }
