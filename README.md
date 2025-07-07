@@ -41,5 +41,5 @@ npm run dev
 
 Here's a quick look at Morse Forge in action:
 
-![morse-forge-preview](https://github.com/user-attachments/assets/96cd8dc7-ae6d-4b21-a5d1-70d71d36d984)
+![Morse Forge UI](https://github.com/user-attachments/assets/df23765a-93e5-4849-ae24-81dd0ed73992)
 
