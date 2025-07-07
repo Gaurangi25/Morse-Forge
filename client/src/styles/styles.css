@@ -530,3 +530,35 @@ tbody tr:hover {
     text-align: center;
   }
 }
+
+@media (max-width: 768px) {
+  .Outer-divs {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .MorseLogic {
+    width: 95vw;
+    margin: 20px 0;
+    height: auto;
+    transform: none; 
+  }
+
+  .textArea,
+  .highlight-overlay {
+    width: 85vw;
+    font-size: 18px;
+    padding: 10px 14px;
+  }
+
+  .MorseHeading h3 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .heading {
+    font-size: 44px;
+    padding: 5px;
+  }
+}
