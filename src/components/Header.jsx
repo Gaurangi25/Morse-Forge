@@ -27,7 +27,7 @@ function Header() {
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
 
-    //this will trigger the above 
+    //this will trigger the above
     if (savedTheme === "light") {
       setIsLight(true);
     } else {
@@ -40,7 +40,17 @@ function Header() {
       <img src="/image.png" alt="logo" className="icon" />
       <div className="heading">Morse Forge</div>
 
-      <div className={`toggle-button ${isLight ? "light-active" : ""}`} onClick={handleToggle}>
+      <div
+        className={`toggle-button ${isLight ? "light-active" : ""}`}
+        onClick={handleToggle}
+        role="switch"
+        aria-checked={isLight}
+        aria-label="Toggle light and dark mode"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") handleToggle();
+        }}
+      >
         <span className="emoji moon">🌙</span>
         <span className="emoji sun">🌞</span>
         <span className="knob" />

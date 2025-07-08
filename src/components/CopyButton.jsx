@@ -17,6 +17,7 @@ function CopyButton({ text }) {
   return (
     <button
       type="button"
+      aria-label="Copy encoded Morse code"
       onClick={handleCopy}
       className={`copy-btn ${copied ? "copied" : ""}`}
     >

@@ -89,20 +89,23 @@ function MorseEncoder() {
   return (
     <div className="wrapper-divs">
       <div className="Outer-divs">
-        <div className="MorseLogic">
+        {/* ENCODER SECTION */}
+
+        <div className="MorseLogic" aria-labelledby="encode-heading">
           <HeadingTextbox
             title="What Would Morse Say?"
             subtitle="Type. Blink. Encrypt🕵️‍♂️"
           />
 
-          <form className="MorseForm">
+          <form className="MorseForm" role="form" aria-label="Morse Encoder">
             <TextArea
               placeholder="⫸Type something mysterious..."
               onChange={handleChange}
               value={text}
+              aria-label="Text to encode"
             />
 
-            <div className="textarea-wrapper">
+            <div className="textarea-wrapper" aria-hidden="true">
               <div className="highlight-overlay">
                 {morseEncoded.split("").map((char, index) => (
                   <span
@@ -119,6 +122,7 @@ function MorseEncoder() {
                 value={morseOutput(text)}
                 placeholder="⫸Decode the static…"
                 className="textArea textarea-styled"
+                aria-label="Encoded Morse output"
               />
             </div>
 
@@ -129,23 +133,26 @@ function MorseEncoder() {
           </form>
         </div>
 
-        <div className="MorseLogic">
+        {/* DECODER SECTION */}
+        <div className="MorseLogic" aria-labelledby="decode-heading">
           <HeadingTextbox
             title="What Does Morse Mean?"
             subtitle="Dots turn to words🧐"
           />
 
-          <form className="MorseForm">
+          <form className="MorseForm" role="form" aria-label="Morse Decoder">
             <TextArea
               placeholder="⫸ Enter Morse code: .- -... -.-."
               onChange={handleDecodeChange}
               value={decodedText}
+              aria-label="Morse code to decode"
             />
 
             <TextArea
               readOnly={true}
               value={decodeMorse(decodedText)}
               placeholder="⫸ Interpreted message..."
+              aria-label="Decoded message"
             />
 
             <CopyButton text={decodeMorse(decodedText)} />
@@ -153,11 +160,11 @@ function MorseEncoder() {
         </div>
       </div>
 
-      <Link to="/reference" className="reference-link">
+      <Link to="/reference" className="reference-link" aria-label="Go to Morse Reference Page">
         Morse Reference
       </Link>
 
-      <div className="facts">
+      <div className="facts" aria-live="polite">
         <strong>💡 Morse Fun Fact</strong>
         <br />
         {morseFacts[new Date().getDate() % morseFacts.length]}
